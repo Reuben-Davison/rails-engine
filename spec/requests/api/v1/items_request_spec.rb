@@ -80,8 +80,8 @@ RSpec.describe "Item API " do
         
         expect(response).to be_successful
         expect(updated_item.name).to eq("new_name")
-        expect(updated_item.name).to_not eq("value1")
-        expect(updated_item.unit_price).to_not eq(100.99)
+        expect(updated_item.name).to_not eq(old_name)
+        expect(updated_item.unit_price).to_not eq(old_price)
         expect(updated_item.unit_price).to eq(500.12)
     end
 end 
