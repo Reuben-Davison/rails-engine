@@ -84,4 +84,14 @@ RSpec.describe "Item API " do
         expect(updated_item.unit_price).to_not eq(old_price)
         expect(updated_item.unit_price).to eq(500.12)
     end
+
+    it 'can delete an item' do 
+        merchant = create(:merchant)
+        item = create(:item)
+
+        delete "/api/v1/items/#{item.id}"
+
+        expect(response).to be_successful
+        expect(Item.count).to eq(0)
+    end
 end 

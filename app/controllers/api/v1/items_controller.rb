@@ -15,6 +15,8 @@ class Api::V1::ItemsController <ApplicationController
        end
     end
 
+
+
     def create 
         item = Item.new(item_params)
         if item.save
@@ -22,6 +24,11 @@ class Api::V1::ItemsController <ApplicationController
         else 
            render status: 404
         end 
+    end
+
+    def destroy 
+        binding.pry
+        render json: Item.delete(params[:id])
     end
 
     private 
