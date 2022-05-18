@@ -39,6 +39,7 @@ group :development, :test do
   gem 'faker'
   gem 'simplecov'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'jsonapi-serializer'
 end
 
 group :development do
