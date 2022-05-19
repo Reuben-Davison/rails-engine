@@ -34,7 +34,18 @@ RSpec.describe "Merchant API " do
     end
 
     it 'can retrieve the info for a single merchant in a query search' do 
-        merchants = create_list(:merchant, 10)
+        create_list(:merchant, 3)
+        merchant = create(:merchant, name: "bethany")
+
+        get '/api/v1/merchants/find?name=EtHany'
+
+        expect(response).to be_successful
+
+        merchant_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(merchant_response.count).to eq(1)
+        expect(merchant_response[:data][:id].to_i).to eq(merchant.id)
+
 
 
     end
