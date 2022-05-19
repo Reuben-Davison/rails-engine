@@ -111,21 +111,38 @@ RSpec.describe "Item API " do
         end
     end
     
-    it 'can find all the items that match a name search query' do 
+    it 'can find all the items that match a min price search query' do 
         create_list(:item, 5, unit_price: 15 )
         create_list(:item, 5, unit_price: 25 )
-        item1 = create(:item, name: 'copysnap', unit_price: 20)
-        item2 = create(:item, name: 'copysnapvip', unit_price: 19)
-        item3 = create(:item, name: 'vipcopysna', unit_price: 23)
+        create(:item, unit_price: 20)
+        create(:item, unit_price: 19)
+        create(:item, unit_price: 23)
 
-        get '/api/v1/items/find_all?name=copysna'
+        get '/api/v1/items/find_all?min_price=20'
         expect(response).to be_successful
         item_response = JSON.parse(response.body, symbolize_names: true)
         
-        expect(item_response[:data].count).to eq(3)
+        expect(item_response[:data].count).to eq(6)
+        item_response[:data].each do |item|
+            expect(item[:attributes][:unit_price]).to be > 19
+        end
+    end
+    
+    it 'can find all the items that match a price search query' do 
+        create_list(:item, 5, unit_price: 15 )
+        create_list(:item, 5, unit_price: 25 )
+        create(:item, unit_price: 20)
+        create(:item, unit_price: 19)
+        create(:item, unit_price: 23)
+
+        get '/api/v1/items/find_all?max_price=24'
+        expect(response).to be_successful
+        item_response = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(item_response[:data].count).to eq()
         item_response[:data].each do |item|
             binding.pry
-            expect(item[:attributes][:name].include?("copysn")).to eq true 
+            expect(item[:attributes][:unit_price]).to be_greater_than(19)
         end
     end
 end 
