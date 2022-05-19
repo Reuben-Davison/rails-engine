@@ -20,8 +20,7 @@ RSpec.describe "Merchant API " do
     end
 
     it 'gets one merchant' do 
-        create_list(:merchant, 5)
-        merchants = Merchant.all
+        merchants = create_list(:merchant, 5)
         get "/api/v1/merchants/#{merchants[2].id}"
 
         expect(response).to be_successful
@@ -31,6 +30,12 @@ RSpec.describe "Merchant API " do
         expect(merchant[:data][:id].to_i).to eq(merchants[2][:id])
         expect(merchant[:data][:attributes][:name]).to eq(merchants[2][:name])
         expect(merchant[:data][:attributes][:name]).to be_a(String)
+
+    end
+
+    it 'can retrieve the info for a single merchant in a query search' do 
+        merchants = create_list(:merchant, 10)
+
 
     end
 end
