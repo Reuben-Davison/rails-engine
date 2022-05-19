@@ -29,6 +29,14 @@ class Api::V1::ItemsController <ApplicationController
         render json: Item.delete(params[:id])
     end
 
+    def find_all
+        if params[:name]
+            render json: ItemSerializer.new(Item.find_by_name(params[:name]))
+        else 
+            render json: ItemSerializer.new(Item.find_by_price(params[:min_price], params[:max_price] ))
+        end   
+    end
+
     private 
 
     def item_params 

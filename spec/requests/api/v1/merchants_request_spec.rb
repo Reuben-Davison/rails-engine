@@ -46,7 +46,5 @@ RSpec.describe "Merchant API " do
         expect(merchant_response.count).to eq(1)
         expect(merchant_response[:data][:id].to_i).to eq(merchant.id)
 
-
-
     end
 end

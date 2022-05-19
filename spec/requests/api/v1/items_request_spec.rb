@@ -94,4 +94,24 @@ RSpec.describe "Item API " do
         expect(response).to be_successful
         expect(Item.count).to eq(0)
     end
+
+    it 'can find all the items that match a name search query' do 
+        create_list(:item, 5, unit_price: 15 )
+        create_list(:item, 5, unit_price: 25 )
+        item1 = create(:item, name: 'copysnap', unit_price: 20)
+        item2 = create(:item, name: 'copysnapvip', unit_price: 19)
+        item3 = create(:item, name: 'vipcopysna', unit_price: 23)
+
+        get '/api/v1/items/find_all?name=copysna'
+        expect(response).to be_successful
+        item_response = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(item_response[:data].count).to eq(3)
+        item_response[:data].each do |item|
+            binding.pry
+            expect(item[:attributes][:name].include?("copysn")).to eq true 
+        end
+        
+
+    end
 end 
