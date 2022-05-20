@@ -7,7 +7,7 @@
 
 ![Rails Engine Schema.pdf](https://github.com/Reuben-Davison/rails-engine/files/8742237/Rails.Engine.Schema.pdf)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+This project's purpose was to apply learning of API expose to data that was formated through a serializer. Priciples and structure of RESTful routes and MVC were followed. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -30,8 +30,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ## Getting Started
 
 Prerequisites:
+* Ruby 2.7.4
 * Rails 5.2.8
-* 2.7.4
+
 
 Installation Steps:
 * $git clone git@github.com:Reuben-Davison/rails-engine.git 
