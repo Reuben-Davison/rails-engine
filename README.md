@@ -5,9 +5,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Rails Engine Schema.pdf](https://github.com/Reuben-Davison/rails-engine/files/8742237/Rails.Engine.Schema.pdf)
+
+
 
 This project's purpose was to apply learning of API expose to data that was formated through a serializer. Priciples and structure of RESTful routes and MVC were followed. 
+
+### Schema
+![Rails Engine Schema](https://user-images.githubusercontent.com/97201304/169580222-7f832e31-5ca8-4b35-9441-3ea38adbfb86.jpg)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -47,8 +51,6 @@ Installation Steps:
 - [ ] Refactor Item controller to remove logic
 
 
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
