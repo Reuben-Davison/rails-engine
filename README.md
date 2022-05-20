@@ -8,7 +8,7 @@
 
 
 
-This project's purpose was to apply the learning of API expose to data that was formated through a serializer. Principles and structure of RESTful routes and MVC were followed. A total of 11 different end point were exposed and included search funtions for both a merchant and a list of items based on a search query. Testing was performed via Rspec and used Factory Bot in conjunction with Faker to produce test data. 
+This project's purpose was to apply the learning of API exposure to data that was formated through a serializer. Principles and structure of RESTful routes and MVC were followed. A total of 11 different endpoints were exposed which included functions to find both a merchant and a list of items based on a query. Testing was performed via Rspec and Factory Bot in conjunction with Faker was used to produce test data.
 
 ### Schema
 ![Rails Engine Schema](https://user-images.githubusercontent.com/97201304/169580222-7f832e31-5ca8-4b35-9441-3ea38adbfb86.jpg)
