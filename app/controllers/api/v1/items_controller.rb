@@ -20,9 +20,9 @@ class Api::V1::ItemsController <ApplicationController
         item = Item.update(params[:id], item_params)
         if  item.save
             render json: ItemSerializer.new(item)
-       else 
+        else 
             render status: 404 
-       end
+        end
     end
 
     def destroy 
@@ -32,14 +32,10 @@ class Api::V1::ItemsController <ApplicationController
     def find_all
         if params[:name]
             render json: ItemSerializer.new(Item.find_by_name(params[:name]))
-        else 
+        elsif params[min_price] || params[max_price]
             render json: ItemSerializer.new(Item.find_by_price(params[:min_price], params[:max_price] ))
-        # elsif params[:min_price] || params[:max_price] 
-        #     render json: ItemSerializer.new(Item.find_by_between_price(params[:min_price], params[:max_price] ))
-        # elsif params[:min_price]
-        #     render json: ItemSerializer.new(Item.find_by_min_price(params[:min_price], params[:max_price] ))
-        # else params[:min_price]
-        #     render json: ItemSerializer.new(Item.find_by_max_price(params[:max_price], params[:max_price] ))
+        else 
+            render status: 404 
         end   
     end
 

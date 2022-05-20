@@ -128,7 +128,7 @@ RSpec.describe "Item API " do
         end
     end
     
-    it 'can find all the items that match a price search query' do 
+    it 'can find all the items that match a max price search query' do 
         create_list(:item, 5, unit_price: 15 )
         create_list(:item, 5, unit_price: 25 )
         create(:item, unit_price: 20)
@@ -139,10 +139,27 @@ RSpec.describe "Item API " do
         expect(response).to be_successful
         item_response = JSON.parse(response.body, symbolize_names: true)
         
-        expect(item_response[:data].count).to eq()
+        expect(item_response[:data].count).to eq(8)
         item_response[:data].each do |item|
-            binding.pry
-            expect(item[:attributes][:unit_price]).to be_greater_than(19)
+            expect(item[:attributes][:unit_price]).to be < 24
+        end
+    end
+
+    it 'can find all the items that match a between price search query' do 
+        create_list(:item, 5, unit_price: 15 )
+        create_list(:item, 5, unit_price: 25 )
+        create(:item, unit_price: 20)
+        create(:item, unit_price: 19)
+        create(:item, unit_price: 23)
+
+        get '/api/v1/items/find_all?max_price=24&min_price=18'
+        expect(response).to be_successful
+        item_response = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(item_response[:data].count).to eq(3)
+        item_response[:data].each do |item|
+            expect(item[:attributes][:unit_price]).to be < 24
+            expect(item[:attributes][:unit_price]).to be > 18
         end
     end
 end 
