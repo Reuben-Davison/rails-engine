@@ -30,12 +30,12 @@ class Api::V1::ItemsController <ApplicationController
     end
 
     def find_all
-        if params[:name]
+        if params[:name] == nil || params[:name] == ''
+            render status: 400
+        elsif params[:name]
             render json: ItemSerializer.new(Item.find_by_name(params[:name]))
-        elsif params[min_price] || params[max_price]
+        else params[min_price] || params[max_price]
             render json: ItemSerializer.new(Item.find_by_price(params[:min_price], params[:max_price] ))
-        else 
-            render status: 404 
         end   
     end
 
